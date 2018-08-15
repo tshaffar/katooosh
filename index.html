@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- background image --> 
+<style>
+body  {
+    background-image: url("wrinkled.jpg"); // images/header.jpg");
+	//background-repeat: no-repeat;
+	background-size: cover; 
+			}
+</style>
+
+<!-- navigation bar --> 
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+
+svg {
+	width: 100%;
+	height: 100%;
+	   position: absolute;
+                top:20;
+                left:30px;
+                width:1200px;
+                height: 900px;
+               
+}
+
+</style>
+
+<head>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="news_sample.js"></script> 
+	<script src="the_data.js"></script> 
+		<script src="tal_helper.js"></script> 
+	
+</head>
+
+<body>
+<button onclick="oldPoem()">Click Here for Random Poem from the past</button>
+
+
+<div id=newsticker> 
+</div> 
+
+<div id=instructions> 
+</div> 
+
+
+<br></br> 
+	<img src="AandJ.jpg"  width="230" height="170">
+</div> 
+
+
+
+
+<script>
+function addTalNewTicker(id, x,y,width,color,list) 
+{
+    var maxNumTimes = 20 + (Math.random() * 100);
+    var numTimes = 0; 
+	var g = d3.select(id)
+		.append("svg") 
+		.append("g")
+		
+		g.append("rect")
+			.attr("id","rectticker") 
+			.attr("x", x)
+			.attr("y", y) 
+			.attr("width", width)
+			.attr("height", 80)
+			.attr("rx", 20 )
+			.attr("ry", 70 )
+			.attr("stroke","black")
+			.attr("stroke-width",10)
+			.attr("opacity","0.5") 
+			.attr("fill", color);
+			
+		g.append("text")
+		.attr("fill","white") 
+		.attr("x",x+10)
+		.attr("y",y+50)
+        .style("font-size", "34px")
+		.text(" ")
+		.transition()
+		.duration(2500)
+		.on("start", function repeat() {
+          numTimes += 1;
+
+		  d3.active(this)
+			  .tween("text", function() {
+				var that = d3.select(this),
+					i = d3.interpolateNumber(that.text().replace(/,/g, ""), Math.random() * 1e6);
+				return function(t) { 
+						var h = Math.random() * list.length; 
+						that.text( list[Math.floor(h)].substring(0,100) ); };
+			  })
+			.transition()
+			  .delay(4000)
+			  .on("start", repeat);
+			
+		});
+
+}
+</script>
+
+<script>
+// Add News
+var nums = []
+var nums2 = []
+var nums3 = [] 
+ 
+for (var i=0; i<200; i++) {
+    num = Math.floor((Math.random() * 100)) 
+    nums.push( num.toString() )
+}
+    
+var format = d3.format(",d");
+
+addTalNewTicker("#newsticker", 250,50, 800, "blue",nums);
+
+</script> 
+
+
+<script>
+
+var sayings = []; 
+
+sayings.push("Computers are now working overtime|to generate a ramdom number without a rhynme");
+sayings.push("Smoke is now seen at some computer center|As a Katooosh Number Picker a number will enter");
+sayings.push(" With latest techonoloy and build on diffreential simulation|A new Katooosh Number Pickerr number will enter the station"); 
+sayings.push("Taking into account climate, earth position and even a Sun storm|A number from Katoosh Number picker will now form"); 
+sayings.push("At 5.6 k is far from being a midget|so let her number picker pick her a digit"); 
+sayings.push(" Without having to click| Katooosh Number Picker will now make a pick"); 
+sayings.push("Don't worry, katoosh, a decision you will not need to make|Your number picker will give you a break");  
+sayings.push("Without doing any tricks|Katooosh Number Picker a number picks");  
+
+talDropText("a", "instructions", 0, 100, 250, 950, "Katooosh is 47 years old", "yellow", "blue");
+talDropText("b", "instructions", 1000, 150, 300, 950, "...And for this birthday we will be bold! ", "yellow", "blue");
+
+let sayNum = Math.floor((Math.random() * sayings.length));
+let poemLine = sayings[sayNum].split("|");  
+
+talDropText("c", "instructions", 2500, 100, 350, 950, poemLine[0], "yellow", "blue");
+talDropText("d", "instructions", 3500, 150, 400, 950, poemLine[1], "yellow", "blue");
+
+
+//talDropText("c", "instructions", 2500, 100, 350, 950, "Using the latest in technology that is super rated", "yellow", "blue");
+//talDropText("d", "instructions", 3500, 150, 400, 950, "...A number for Katooosh will now be generated! ", "yellow", "blue");
+
+
+function oldPoem() {
+var pages = [ "37.html", "38.html", "39.html", "40.html",
+              "37.html", "38.html", "39.html", "40.html"]; 
+              
+let page = pages[Math.floor((Math.random() * pages.length))]; 
+  window.location = page;
+}
+</script>
+
+
+
+
+</script> 
+
+
+
+
+
+	
+
+</body>
