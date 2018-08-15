@@ -46,7 +46,7 @@ svg {
 	height: 100%;
 	   position: absolute;
                 top:20;
-                left:000px;
+                left:30px;
                 width:1200px;
                 height: 900px;
                
@@ -63,6 +63,7 @@ svg {
 </head>
 
 <body>
+<button onclick="oldPoem()">Click Here for Random Poem from the past</button>
 
 
 <div id=newsticker> 
@@ -144,41 +145,44 @@ var format = d3.format(",d");
 
 addTalNewTicker("#newsticker", 250,50, 800, "blue",nums);
 
-// Add Media 
-
-addTalNewTicker("#newsticker", 250,100, 800, "green",medias);
-
-
-// Add Countries
-var data = theData(); 
-
-// Make a list of all the countries 
-dataMedia = data["New York Times"];
-
-keys = Object.keys(dataMedia); //data2.keys(); 
-
-countries = [];
-
-for (var key in dataMedia) {
-
-	countries.push( key); 
-	
-}
-addTalNewTicker("#newsticker", 250,150, 800, "red",countries);
-
-
 </script> 
 
 
 <script>
 
+var sayings = []; 
+
+sayings.push("Computers are now working overtime|to generate a ramdom number without a rhynme");
+sayings.push("Smoke is now seen at some computer center|As a Katooosh Number Picker a number will enter");
+sayings.push(" With latest techonoloy and build on diffreential simulation|A new Katooosh Number Pickerr number will enter the station"); 
+sayings.push("Taking into account climate, earth position and even a Sun storm|A number from Katoosh Number picker will now form"); 
+sayings.push("At 5.6 k is far from being a midget|so let her number picker pick her a digit"); 
+sayings.push(" Without having to click| Katooosh Number Picker will now make a pick"); 
+sayings.push("Don't worry, katoosh, a decision you will not need to make|Your number picker will give you a break");  
+sayings.push("Without doing any tricks|Katooosh Number Picker a number picks");  
+
 talDropText("a", "instructions", 0, 100, 250, 950, "Katooosh is 47 years old", "yellow", "blue");
 talDropText("b", "instructions", 1000, 150, 300, 950, "...And for this birthday we will be bold! ", "yellow", "blue");
 
-talDropText("c", "instructions", 2500, 100, 350, 950, "Using the latest in technology that is super rated", "yellow", "blue");
-talDropText("d", "instructions", 3500, 150, 400, 950, "...A number for Katooosh will now be generated! ", "yellow", "blue");
+let sayNum = Math.floor((Math.random() * sayings.length));
+let poemLine = sayings[sayNum].split("|");  
+
+talDropText("c", "instructions", 2500, 100, 350, 950, poemLine[0], "yellow", "blue");
+talDropText("d", "instructions", 3500, 150, 400, 950, poemLine[1], "yellow", "blue");
 
 
+//talDropText("c", "instructions", 2500, 100, 350, 950, "Using the latest in technology that is super rated", "yellow", "blue");
+//talDropText("d", "instructions", 3500, 150, 400, 950, "...A number for Katooosh will now be generated! ", "yellow", "blue");
+
+
+function oldPoem() {
+var pages = [ "37.html", "38.html", "39.html", "40.html",
+              "37.html", "38.html", "39.html", "40.html"]; 
+              
+let page = pages[Math.floor((Math.random() * pages.length))]; 
+  window.location = page;
+}
+</script>
 
 
 
